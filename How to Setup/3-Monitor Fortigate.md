@@ -138,7 +138,7 @@ vi /usr/local/prometheus/prometheus.yml
         labels:                           
          hostname: GROUP-FG
          device: fortigate
-         company: ITFORVN
+         company: abc
     scrape_interval: 3m
     scrape_timeout : 3m
     metrics_path: /snmp
