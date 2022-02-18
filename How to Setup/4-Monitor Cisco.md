@@ -72,7 +72,7 @@ vi /usr/local/prometheus/prometheus.yml
         labels:                           
          hostname: Core-SW1
          device: cisco
-         company: ITFORVN
+         company: abc
     scrape_interval: 3m
     scrape_timeout : 3m
     metrics_path: /snmp
