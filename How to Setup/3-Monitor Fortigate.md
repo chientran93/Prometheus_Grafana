@@ -53,7 +53,7 @@ vi go/src/github.com/prometheus/snmp_exporter/generator/generator.yml
 ```
 ```
 modules:
-########## Fortigate
+###### Fortigate
   fortigate_snmp:
    walk:
    - ifXTable
@@ -130,7 +130,7 @@ Module: chính là module mà bạn tạo bằng generator cho fortigate
 vi /usr/local/prometheus/prometheus.yml
 ```
 ```
-################################ FORTIGATE
+###### FORTIGATE
   - job_name: 'fortigate'
     static_configs:
       - targets:
