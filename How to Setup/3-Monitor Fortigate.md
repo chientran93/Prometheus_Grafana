@@ -52,20 +52,42 @@ ${GOPATH-$HOME/go}/src/github.com/prometheus/snmp_exporter/generator/mibs
 vi go/src/github.com/prometheus/snmp_exporter/generator/generator.yml
 ```
 ```
+
 modules:
-###### Fortigate
+########## Fortigate
   fortigate_snmp:
    walk:
    - ifXTable
-   - fgVpn
    - fgSystem
    - fgIntf
-   version: 2
+   #- fgInetProto
+   version: 3
    max_repetitions: 25
-   retries: 3
    timeout: 10s
    auth:
-    community: public
+     username: ncsc
+     security_level: 
+     password: 
+     auth_protocol: SHA
+     priv_protocol: AES
+     priv_password: 
+
+  fortigate_snmp_ddn:
+   walk:
+   - ifXTable
+   - fgSystem
+   - fgIntf
+   #- fgInetProto
+   version: 3
+   max_repetitions: 25
+   timeout: 30s
+   auth:
+     username: 
+     security_level: authPriv
+     password: 
+     auth_protocol: SHA
+     priv_protocol: AES
+     priv_password: 
 ```
  Trong đó chúng ta cần chú ý các tham số sau:
 
