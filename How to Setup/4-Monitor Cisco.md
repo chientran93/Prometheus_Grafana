@@ -70,24 +70,26 @@ vi /usr/local/prometheus/prometheus.yml
 ```
 ```
 ####### CISCO
-      - targets: ['10.10.10.2']
-         # Core switch 01.
-        labels:                           
-         hostname: Core-SW1
-         device: cisco
-         company: abc
+  - job_name: 'Cisco'
+    static_configs:
+    - targets: ['192.168.x.x']
+      labels:
+       hostname: SW24
+       device: cisco
+       company: abc
     scrape_interval: 3m
     scrape_timeout : 3m
     metrics_path: /snmp
     params:
-      module: [cisco]
+      module: [cisco141516]
     relabel_configs:
       - source_labels: [__address__]
         target_label: __param_target
       - source_labels: [__param_target]
         target_label: instance
-      - target_label: __address__
-        replacement: 10.10.10.98:9116  # SNMP exporter.
+      - source_labels: []
+        target_label: __address__
+        replacement: 192.168.x.x:9116  # SNMP exporter.
 ```
 ```
 systemctl restart prometheus
