@@ -52,7 +52,6 @@ ${GOPATH-$HOME/go}/src/github.com/prometheus/snmp_exporter/generator/mibs
 vi go/src/github.com/prometheus/snmp_exporter/generator/generator.yml
 ```
 ```
-
 modules:
 ########## Fortigate
   fortigate_snmp:
