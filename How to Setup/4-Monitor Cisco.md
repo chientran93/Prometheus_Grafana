@@ -5,9 +5,8 @@ cd ${GOPATH-$HOME/go}/src/github.com/prometheus/snmp_exporter/generator
 vi generator.yml
 ```
 ```
-modules:
-###### Cisco 
-  cisco:
+########### Cisco
+  cisco141516:
 #   walk: [sysUpTime, interfaces, ifXTable]
    walk:
    - 1.3.6.1.2.1.2.2.1.1
@@ -26,8 +25,16 @@ modules:
    - 1.3.6.1.2.1.31.1.1.1.18
    - 1.3.6.1.4.1.9.9.48.1.1.1.5
    - 1.3.6.1.4.1.9.9.48.1.1.1.6
-   - 1.3.6.1.4.1.9.2.1
+   - 1.3.6.1.4.1.9.9.109.1.1.1.1.8
    - 1.3.6.1.2.1.1.5
+   - 1.3.6.1.4.1.9.9.13.1.4.1
+   - 1.3.6.1.2.1.1.3
+   - 1.3.6.1.2.1.2.2.1.4
+   - 1.3.6.1.2.1.2
+   - 1.3.6.1.2.1.31.1
+   - 1.3.6.1.2.1.31.1.1.1
+   - 1.3.6.1.4.1.9.9.13.1.3
+   - 1.3.6.1.4.1.9.9.13.1.3.1
    lookups:
      - source_indexes: [ifIndex]
        lookup: ifAlias
@@ -36,21 +43,17 @@ modules:
      - source_indexes: [ifIndex]
        # Use OID to avoid conflict with Netscaler NS-ROOT-MIB.
        lookup: 1.3.6.1.2.1.31.1.1.1.1 # ifName
-   overrides:
-     ifAlias:
-       ignore: true # Lookup metric
-     ifDescr:
-       ignore: true # Lookup metric
-     ifName:
-       ignore: true # Lookup metric
-     ifType:
-       type: EnumAsInfo
-   version: 2
+   version: 3
    max_repetitions: 25
    retries: 3
    timeout: 10s
    auth:
-    community: public
+     username: 
+     security_level: authPriv
+     password: 
+     auth_protocol: SHA
+     priv_protocol: AES
+     priv_password: 
 ```
 OID. Thông tin về OID kiểm tra tại đây . https://cric.grenoble.cnrs.fr/Administrateurs/Outils/MIBS/
 ```
