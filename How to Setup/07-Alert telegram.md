@@ -56,46 +56,43 @@ alerting:
 vi /usr/local/prometheus/windows-rules.yml
 ```
 ```
-############# Define Rule Alert ###############
-# my global config
-############# Define Rule Alert ###############
 groups:
 - name: Windows-alert
   rules:
 
 ################ Memory Usage High
   - alert: Memory Usage High
-    expr: 100*(wmi_os_physical_memory_free_bytes) / wmi_cs_physical_memory_bytes > 90
+    expr: 100-100 * windows_os_physical_memory_free_bytes/ windows_cs_physical_memory_bytes > 85
     for: 1m
     labels:
       severity: warning
     annotations:
       summary: "Memory Usage (instance {{ $labels.instance }})"
-      description: "Memory Usage is more than 90%\n  VALUE = {{ $value }}\n  LABELS: {{ $labels }}"
+      description: "Memory Usage is more than 85%\n  VALUE = {{ $value }}\n  LABELS: {{ $labels }}"
 
 ################ CPU Usage High
   - alert: Cpu Usage High
-    expr: 100 - (avg by (instance) (irate(wmi_cpu_time_total{mode="idle"}[2m])) * 100) > 80
+    expr: 100 - (avg by (instance) (rate(windows_cpu_time_total{mode="idle"}[2m])) * 100)  > 85
     for: 1m
     labels:
       severity: warning
     annotations:
       summary: "CPU Usage (instance {{ $labels.instance }})"
-      description: "CPU Usage is more than 80%\n  VALUE = {{ $value }}\n  LABELS: {{ $labels }}"
+      description: "CPU Usage is more than 85%\n  VALUE = {{ $value }}\n  LABELS: {{ $labels }}"
 
 ################ Disk Usage
   - alert: DiskSpaceUsage
-    expr: 100.0 - 100 * ((wmi_logical_disk_free_bytes{} / 1024 / 1024 ) / (wmi_logical_disk_size_bytes{}  / 1024 / 1024)) > 95
+    expr: 100.0 - 100 * ((windows_logical_disk_free_bytes{} / 1024 / 1024 ) / (windows_logical_disk_size_bytes{}  / 1024 / 1024)) > 85
     for: 1m
     labels:
       severity: error
     annotations:
       summary: "Disk Space Usage (instance {{ $labels.instance }})"
-      description: "Disk Space on Drive is used more than 95%\n  VALUE = {{ $value }}\n  LABELS: {{ $labels }}"
+      description: "Disk Space on Drive is used more than 85%\n  VALUE = {{ $value }}\n  LABELS: {{ $labels }}"
 
 ################ ServiceStatus
   - alert: ServiceStatus
-    expr: wmi_service_status{status="ok"} != 1
+    expr: windows_service_status{status="ok"} != 1
     for: 1m
     labels:
       severity: error
@@ -105,7 +102,7 @@ groups:
 
 ################ CollectorError
   - alert: CollectorError
-    expr: wmi_exporter_collector_success == 0
+    expr: windows_exporter_collector_success == 0
     for: 1m
     labels:
       severity: error
