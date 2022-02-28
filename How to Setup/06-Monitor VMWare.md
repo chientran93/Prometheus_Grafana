@@ -1,5 +1,8 @@
 - Ubuntu 20.04 đã tích hợp sẵn Python 3.8 nên chỉ cần cài python3-pip để cài vmware_exporter. Đối với các Distro khác thì phải cài Python >=3.6
 ```
+apt install python3-pip
+```
+```
 wget https://www.python.org/ftp/python/3.6.4/Python-3.6.4.tar.xz
 tar -xJf Python-3.6.4.tar.xz
 cd Python-3.6.4
