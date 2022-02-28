@@ -44,7 +44,7 @@ default:
 ```
 - Tạo service trong systemd cho vmware_exporter
 ```
-vi /etc/systemd/system vmware_exporter.service
+vi /etc/systemd/system/vmware_exporter.service
 ```
 ```
 [Unit]
