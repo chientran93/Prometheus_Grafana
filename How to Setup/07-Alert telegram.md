@@ -191,12 +191,33 @@ cd /usr/local/prometheus_bot/
 export TELEGRAM_CHATID="-364942581"
 make test
 ```
-- Tiếp tục tạo templet gửi alert trong prometheus. Trong thư mục testdata có nhiều templet cho bạn sử dụng, thường mình dùng templet production_example.tmpl
+- Nếu test lỗi thì thực hiện config lại đường dẫn của template trong file config.yaml
+- Tiếp tục tạo tempplate gửi alert trong prometheus. Trong thư mục testdata có nhiều templet cho bạn sử dụng, thường mình dùng templet production_example.tmpl
 ```
 cd /usr/local/prometheus_bot/
 cp production_example.tmpl /usr/local/prometheus_bot/template.tmpl
 ```
-- Tiếp tục edit lại tên của template trong config.yaml của prometheus_bot
+- Tiếp tục edit lại đường dẫn của template trong config.yaml của prometheus_bot
+- Sau đó tạo 1 service trong systemd
+```
+vi /etc/systemd/system/prometheus-bot.service
+```
+```
+[Unit]
+Description=Prometheus-bot
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+User=root
+Group=root
+Type=simple
+WorkingDirectory=/usr/local/alertmanager/
+ExecStart=/usr/local/prometheus_bot/prometheus_bot -c /usr/local/prometheus_bot/config.yaml -l "0.0.0.0:9087"
+
+[Install]
+WantedBy=multi-user.target
+```
 - Reset lại các service đã cấu hình
 ```
 service prometheus_bot restart
