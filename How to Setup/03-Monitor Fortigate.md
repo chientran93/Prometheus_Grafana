@@ -1,6 +1,6 @@
 - Cài đặt golang: https://go.dev/dl/
 ```
-wget https://dl.google.com/go/go1.12.5.linux-amd64.tar.gz
+wget https://go.dev/dl/go1.15.15.linux-amd64.tar.gz
 tar -xvzf go1.12.5.linux-amd64.tar.gz
 mv go /usr/local
 ```
