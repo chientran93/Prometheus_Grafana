@@ -50,3 +50,4 @@ systemctl status grafana-server
 sudo systemctl enable grafana-server.service
 ```
 - Truy cập vào Grfana: http://IP:3000
+default password: admin/admin
