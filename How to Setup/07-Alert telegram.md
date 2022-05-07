@@ -125,8 +125,8 @@ rule_files:
 ```
 - Kiểm tra lại rule đã tạo bằng lệnh sau:
 ```
-cd /usr/local/bin/
-./promtool check config  /usr/loca/prometheus/prometheus.yml
+cd /usr/local/prometheus
+./promtool check config  /usr/local/prometheus/prometheus.yml
 ```
 - restart lại service prometheus và kiểm tra kết quả
 - Tải bot telegram: https://github.com/inCaller/prometheus_bot
